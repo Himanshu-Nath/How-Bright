@@ -1,11 +1,55 @@
-/* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
+@font-face {
+    font-family: exo2Regular;
+    src: url(./assets/fonts/Exo2-Regular.ttf);
+}
+
+@font-face {
+    font-family: exo2Light;
+    src: url(./assets/fonts/Exo2-Light.ttf);
+}
+
+@font-face {
+    font-family: exo2ExtraBold;
+    src: url(./assets/fonts/Exo2-ExtraBold.ttf);
+}
 
 .center {
     text-align:center;
 }
 
+.left {
+    text-align:left;
+}
+
+.right {
+    text-align:right;
+}
+
 .footer {
     background: #e8e7e7;
     color:white;
+}
+
+.image-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+p.description {
+    font-family: exo2Light, monospace, cursive, Times, serif;
+    font-size: 1.2em;
+    font-weight: 400;
+}
+
+.super-heading {
+    font-family: exo2ExtraBold, monospace, cursive, Times, serif;
+    font-size:6vw;
+}
+
+.color {
+    color: #2A5082
 }

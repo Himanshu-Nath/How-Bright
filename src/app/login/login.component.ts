@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../objects/user'
 import { LoginService } from './login.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -15,11 +16,15 @@ export class LoginComponent implements OnInit {
     password: 'Sam@gmail.com'
   };
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private location: Location) {
     // this.user.username = "himans";
   }
 
   ngOnInit() {
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   onLogin(): void {

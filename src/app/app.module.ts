@@ -8,9 +8,10 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { DescriptionComponent } from './description/description.component'
 import { AppRoutingModule } from './/app-routing.module';
 
-import { LoginService } from './login/login.service'
+import { LoginService } from './login/login.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LoginService } from './login/login.service'
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    DescriptionComponent
   ],
   imports: [
     BrowserModule,
