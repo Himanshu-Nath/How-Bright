@@ -50,6 +50,15 @@ p.description {
     font-size:6vw;
 }
 
+.regular-heading {
+    font-family: exo2Regular, monospace, cursive, Times, serif;
+    font-size:4vw;
+}
+
+.light-font {
+    font-family: exo2Light;
+}
+
 .color {
     color: #2A5082
 }

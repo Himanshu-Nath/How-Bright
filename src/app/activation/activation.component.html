@@ -1,0 +1,27 @@
+<div class="container light-font">
+    <h1 class="center super-heading color"> Welcome to How Bright </h1>
+    <h2 class="regular-heading color center">Activation Form</h2>
+    <form>
+      <div class="imgcontainer">
+        <img src="assets/images/activation1.png" alt="Activation icon" class="avatar">
+      </div>
+      <div class="container" *ngIf="status; else elseActivationBlock">
+          <div class="row">
+          <h4 class="col center">Account is already activated. Go back to <a routerLink="/login">login</a> page</h4>
+          </div>        
+      </div>
+      <ng-template #elseActivationBlock>
+      <div class="container" *ngIf="!status">
+          <div class="row">
+          <h4 class="col center">Click here to activate your account</h4>
+          </div>
+        <button type="button" class="btn btn-outline-success btn-block" (click)="onActivate()">Activate</button>
+      </div>
+    </ng-template>
+        <div class="row">
+          <div class="col center">
+            <p>Reach us at hnath723@gmail.com for any queries or reach us at +91 7040622320</p>
+          </div>
+        </div>
+    </form>
+</div>

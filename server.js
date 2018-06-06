@@ -3,7 +3,6 @@ log4js = require('log4js');
 async = require('async');
 const express = require('express');
 const db = require('./server/config/db');
-const nodemailer = require('nodemailer');
 const path = require('path');
 const uuid = require('uuid');
 const bodyParser = require('body-parser');
@@ -23,7 +22,12 @@ app.use(bodyParser.json({limit: '50mb', parameterLimit: 1000000}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.post('/api/login', getMovieList);
+var User = require('./server/routes/user')
+
+app.post('/api/login', User.userLogin);
+app.post('/api/register', User.userRegister);
+app.get('/api/useractivate/:key', User.userActivate);
+app.get('/api/userstatus/:key', User.userActivateStatus);
 
 app.use('/', express.static(__dirname + '/'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
@@ -39,7 +43,3 @@ app.listen(consts.PORT, function() {
     // logger.error('Cheese is too ripe!');
     // logger.fatal('Cheese was breeding ground for listeria.');
 })
-
-function getMovieList() {
-    console.log("------------1");
-}

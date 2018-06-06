@@ -12,6 +12,7 @@ import { DescriptionComponent } from './description/description.component'
 import { AppRoutingModule } from './/app-routing.module';
 
 import { LoginService } from './login/login.service';
+import { ActivationComponent } from './activation/activation.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LoginService } from './login/login.service';
     FooterComponent,
     LoginComponent,
     RegistrationComponent,
-    DescriptionComponent
+    DescriptionComponent,
+    ActivationComponent
   ],
   imports: [
     BrowserModule,

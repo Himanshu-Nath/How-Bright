@@ -9,3 +9,21 @@
 [2018-06-06T11:14:20.792] [INFO] db.js - Mongoose default connection disconnected through app termination
 [2018-06-06T11:17:15.998] [INFO] server.js - Server is running at port: 3000
 [2018-06-06T11:17:17.135] [INFO] db.js - Connected
+[2018-06-06T12:49:05.778] [INFO] db.js - Mongoose default connection disconnected through app termination
+[2018-06-06T12:50:07.531] [INFO] server.js - Server is running at port: 3000
+[2018-06-06T12:50:08.818] [INFO] db.js - Connected
+[2018-06-06T14:30:02.469] [INFO] db.js - Mongoose default connection disconnected through app termination
+[2018-06-06T14:30:13.397] [INFO] server.js - Server is running at port: 3000
+[2018-06-06T14:30:14.445] [INFO] db.js - Connected
+[2018-06-06T14:34:48.942] [INFO] db.js - Mongoose default connection disconnected through app termination
+[2018-06-06T14:40:01.172] [INFO] server.js - Server is running at port: 3000
+[2018-06-06T14:40:02.369] [INFO] db.js - Connected
+[2018-06-06T16:47:42.034] [INFO] db.js - Mongoose default connection disconnected through app termination
+[2018-06-06T16:48:32.048] [INFO] server.js - Server is running at port: 3000
+[2018-06-06T16:48:33.612] [INFO] db.js - Connected
+[2018-06-06T16:49:13.441] [INFO] db.js - Mongoose default connection disconnected through app termination
+[2018-06-06T16:49:28.869] [INFO] server.js - Server is running at port: 3000
+[2018-06-06T16:49:30.077] [INFO] db.js - Connected
+[2018-06-06T16:56:04.670] [INFO] db.js - Mongoose default connection disconnected through app termination
+[2018-06-06T16:56:20.639] [INFO] server.js - Server is running at port: 3000
+[2018-06-06T16:56:21.827] [INFO] db.js - Connected
