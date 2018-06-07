@@ -15,6 +15,7 @@ var UserSchema = new Schema({
     exams:[],
     token: String,
     tempKey: String,
+    question: {q1: String, a1: String},
     ct: {type: Date, default: Date.now},
     mt: {type: Date, default: Date.now}
 }, {collection: 'users'});

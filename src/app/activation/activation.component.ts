@@ -13,6 +13,7 @@ export class ActivationComponent implements OnInit {
 
   key: string;
   status: Boolean;
+  name: string;
 
   ngOnInit() {
     this.key = this.route.snapshot.paramMap.get('key');
@@ -24,6 +25,7 @@ export class ActivationComponent implements OnInit {
     .subscribe(result => {
       console.log(result);
       this.status = result.activationStatus;
+      this.name = "Sam";
     });
   }
 

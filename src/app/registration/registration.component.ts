@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormControl, Validators } from '@angular/forms';
+import { RegistrationService } from './registration.service';
+import { User } from '../objects/user'
 
 @Component({
   selector: 'app-registration',
@@ -7,9 +11,76 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor() { }
+  startDate = new Date(1990, 0, 1);
+  hide = true;
+  questions = [
+    'What is birth place?',
+    'What is your best friend name?',
+    'What is your pet name?',
+    'What is your first vehicle number?',
+    'What is your 10th marks?'
+  ];
+  genderOption = [
+    'Male',
+    'Female',
+    'Other'
+  ];
+
+  name = new FormControl('', [Validators.required]);
+  email = new FormControl('', [Validators.required, Validators.email]);
+  username = new FormControl('', [Validators.required]);
+  password = new FormControl('', [Validators.required]);
+  mobile = new FormControl('', [Validators.required]);
+  question = new FormControl('', [Validators.required]);
+  answer = new FormControl('', [Validators.required]);
+  
+  getFullnameErrorMessage() {
+    return this.name.hasError('required') ? 'You must enter a value' : '';
+  }
+
+  getEmailErrorMessage() {
+    return this.email.hasError('required') ? 'You must enter a value' : '';
+  }
+
+  getUsernameErrorMessage() {
+    return this.username.hasError('required') ? 'You must enter a value' : '';
+  }
+
+  getPasswordErrorMessage() {
+    return this.password.hasError('required') ? 'You must enter a value' : '';
+  }
+
+  getMobileErrorMessage() {
+    return this.mobile.hasError('required') ? 'You must enter a value' : '';
+  }
+
+  getAnswerErrorMessage() {
+    return this.answer.hasError('required') ? 'You must enter a value' : '';
+  }
+
+  user: User = {
+    name: 'Himanshu',
+    email: 'hnath723@gmail.com',
+    username: 'hemu',
+    password: 'hemu',
+    mobile: 9089876756,
+    gender: this.genderOption[0],
+    question: this.questions[0],
+    answer: 'DOS',
+    dob: new Date()
+  };
+
+  constructor(private registrationService: RegistrationService) { }
 
   ngOnInit() {
+  }
+
+  onRegister(): void {
+    console.log(this.user);
+    this.registrationService.register(this.user)
+    .subscribe(user => {
+      console.log(user);
+    });
   }
 
 }

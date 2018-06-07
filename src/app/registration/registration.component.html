@@ -1,3 +1,130 @@
-<p>
-  registration works!
-</p>
+<div class="container light-font">
+  <h1 class="center super-heading color">Welcome to How Bright </h1>
+  <h2 class="regular-heading color center">Registration Form</h2>
+  <form>
+    <div class="imgcontainer">
+      <img src="assets/images/register.png" alt="Registration icon" class="avatar">
+    </div>
+    <div class="container">
+      <!-- <label for="fname">
+        <b>Full Name</b>
+      </label>
+      <input type="text" placeholder="Enter Full Name" name="fname" [(ngModel)]="user.name" required>      
+
+      <label for="email">
+        <b>Email</b>
+      </label>
+      <input type="email" placeholder="Enter Email" name="email" [(ngModel)]="user.email" required>
+      
+      <label for="uname">
+        <b>Username</b>
+      </label>
+      <input type="text" placeholder="Enter Username" name="uname" [(ngModel)]="user.username" required>
+
+      <label for="psw">
+        <b>Password</b>
+      </label>
+      <input type="password" placeholder="Enter Password" name="psw" [(ngModel)]="user.password" required>
+
+      <label for="mobile">
+        <b>Mobile Number</b>
+      </label>
+      <input type="number" placeholder="Enter Mobile Number" name="mobile" [(ngModel)]="user.mobile" required> -->
+
+      <div class="input-field">
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+          <input matInput placeholder="Enter your full name" [formControl]="name" [(ngModel)]="user.name" md-maxlength="30" required>
+          <mat-error *ngIf="name.invalid">{{getFullnameErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      
+      <div class="input-field">
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+          <input matInput placeholder="Enter your email" [formControl]="email" [(ngModel)]="user.email" required>
+          <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="input-field">
+        <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+          <input matInput placeholder="Enter your username" [formControl]="username" [(ngModel)]="user.username" required>
+          <mat-error *ngIf="username.invalid">{{getUsernameErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="input-field">
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+          <input matInput placeholder="Enter your password" [formControl]="password" [(ngModel)]="user.password" [type]="hide ? 'password' : 'text'" required>
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+          <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="input-field">
+        <mat-form-field appearance="outline">
+            <mat-label>Mobile</mat-label>
+          <input matInput placeholder="Enter your mobile number" [formControl]="mobile" [(ngModel)]="user.mobile" required>
+          <mat-icon matSuffix>phone_iphone</mat-icon>
+          <mat-error *ngIf="mobile.invalid">{{getMobileErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="input-field">
+      <mat-form-field appearance="outline">
+          <mat-label>Questions</mat-label>
+          <mat-select placeholder="Select one question" [formControl]="question" [(ngModel)]="user.question" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let question of questions" [value]="question">
+              {{question}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="question.hasError('required')">Please choose an question</mat-error>
+          <mat-hint>{{question.value?.sound}}</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="input-field">
+          <mat-form-field appearance="outline">
+              <mat-label>Answer</mat-label>
+            <input matInput placeholder="Enter your question answer" [formControl]="answer" [(ngModel)]="user.answer" md-maxlength="30" required>
+            <mat-error *ngIf="answer.invalid">{{getAnswerErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+
+      <div class="row">
+        <div class="col-2">
+          <label for="gender">
+            <b>Gender</b>
+          </label>
+        </div>
+        <div class="col">
+          <mat-radio-group class="example-radio-group" [(ngModel)]="user.gender" name="gender">
+            <mat-radio-button class="example-radio-button" *ngFor="let gender of genderOption" [value]="gender">
+              {{gender}}&nbsp;&nbsp;  
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-2">
+          <label for="dob">
+            <b>Date Of Birth</b>
+          </label>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="dob" [(ngModel)]="user.dob">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <button type="button" class="btn btn-outline-success btn-block" (click)="onRegister()">Register</button>
+    </div>
+  </form>
+</div>

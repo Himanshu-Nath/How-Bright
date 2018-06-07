@@ -1,4 +1,5 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 @font-face {
     font-family: exo2Regular;
@@ -62,3 +63,21 @@ p.description {
 .color {
     color: #2A5082
 }
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #308cbb;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: #2b85de;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+}
+  
+.input-field > * {
+    width: 100%;
+}
+  

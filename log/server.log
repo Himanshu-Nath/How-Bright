@@ -27,3 +27,29 @@
 [2018-06-06T16:56:04.670] [INFO] db.js - Mongoose default connection disconnected through app termination
 [2018-06-06T16:56:20.639] [INFO] server.js - Server is running at port: 3000
 [2018-06-06T16:56:21.827] [INFO] db.js - Connected
+[2018-06-07T10:16:32.156] [INFO] server.js - Server is running at port: 3000
+[2018-06-07T10:16:33.604] [INFO] db.js - Connected
+[2018-06-07T18:38:39.301] [INFO] server.js - Server is running at port: 3000
+[2018-06-07T18:38:40.638] [INFO] db.js - Connected
+[2018-06-07T18:47:57.329] [INFO] server.js - Server is running at port: 3000
+[2018-06-07T18:47:58.496] [INFO] db.js - Connected
+[2018-06-07T18:49:17.372] [INFO] email.js - sendMail: Mail send successfully
+[2018-06-07T18:52:44.305] [INFO] db.js - Mongoose default connection disconnected through app termination
+[2018-06-07T18:52:59.568] [INFO] server.js - Server is running at port: 3000
+[2018-06-07T18:53:00.686] [INFO] db.js - Connected
+[2018-06-07T18:56:47.858] [INFO] db.js - Mongoose default connection disconnected through app termination
+[2018-06-07T18:56:59.095] [INFO] server.js - Server is running at port: 3000
+[2018-06-07T18:57:00.198] [INFO] db.js - Connected
+[2018-06-07T18:58:02.316] [INFO] email.js - sendMail: Mail send successfully
+[2018-06-07T19:05:03.603] [INFO] server.js - Server is running at port: 3000
+[2018-06-07T19:05:04.639] [INFO] db.js - Connected
+[2018-06-07T19:08:42.595] [INFO] server.js - Server is running at port: 3000
+[2018-06-07T19:08:43.634] [INFO] db.js - Connected
+[2018-06-07T19:09:47.985] [INFO] server.js - Server is running at port: 3000
+[2018-06-07T19:09:49.024] [INFO] db.js - Connected
+[2018-06-07T19:09:52.563] [ERROR] user.js - userLogin: user not found
+[2018-06-07T19:12:43.725] [INFO] db.js - Mongoose default connection disconnected through app termination
+[2018-06-07T19:12:53.091] [INFO] server.js - Server is running at port: 3000
+[2018-06-07T19:12:54.382] [INFO] db.js - Connected
+[2018-06-07T19:13:09.080] [INFO] server.js - Server is running at port: 3000
+[2018-06-07T19:13:10.223] [INFO] db.js - Connected

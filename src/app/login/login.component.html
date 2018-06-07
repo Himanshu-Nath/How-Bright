@@ -1,12 +1,12 @@
-<div class="container">
-  <h1 class="center"> Welcome to How Bright </h1>
-  <h2>Login Form</h2>
+<div class="container light-font">
+  <h1 class="center super-heading color"> Welcome to How Bright </h1>
+  <h2 class="regular-heading color center">Login Form</h2>
   <form>
     <div class="imgcontainer">
       <img src="assets/images/login1.jpg" alt="Avatar" class="avatar">
     </div>
     <div class="container">
-      <label for="uname">
+      <!-- <label for="uname">
         <b>Username</b>
       </label>
       <input type="text" placeholder="Enter Username" name="uname" [(ngModel)]="user.username" required>
@@ -17,9 +17,31 @@
       <input type="password" placeholder="Enter Password" name="psw" [(ngModel)]="user.password" required>
 
       <button type="button" class="btn btn-outline-success btn-block" (click)="onLogin()">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
+       -->
+
+      <div class="input-field">
+          <mat-form-field appearance="outline">
+              <mat-label>Username</mat-label>
+            <input matInput placeholder="Enter your username" [formControl]="username" [(ngModel)]="user.username" required>
+            <mat-error *ngIf="username.invalid">{{getUsernameErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div class="input-field">
+          <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+            <input matInput placeholder="Enter your password" [formControl]="password" [(ngModel)]="user.password" [type]="hide ? 'password' : 'text'" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-checkbox class = "example-margin" [(ngModel)] = "remember" name="remember"> 
+            Remember me
+          </mat-checkbox>
+
+        <button type="button" class="btn btn-outline-success btn-block" (click)="onLogin()">Login</button>
+
     </div>
     <div class="container" style="background-color:#f1f1f1">
       <div class="row">

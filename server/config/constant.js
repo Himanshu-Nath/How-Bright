@@ -13,7 +13,7 @@ module.exports = {
     DELETE : "DELETED",
 
     MONGODB_ATLAS_URL: "",
-    MONGODB_LOCALHOST_URL: "mongodb://localhost/UMS",
+    MONGODB_LOCALHOST_URL: "mongodb://localhost/HB",
 
     EMAIL : {
         to: 'hnath723@gmail.com',

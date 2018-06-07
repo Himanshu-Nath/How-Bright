@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { User } from '../objects/user'
 import { LoginService } from './login.service';
 import { Location } from '@angular/common';
@@ -11,9 +12,30 @@ import { Location } from '@angular/common';
 
 export class LoginComponent implements OnInit {
 
+  startDate = new Date(1990, 0, 1);
+  hide = true;
+  
+  username = new FormControl('', [Validators.required]);
+  password = new FormControl('', [Validators.required]);
+
+  getUsernameErrorMessage() {
+    return this.username.hasError('required') ? 'You must enter a value' : '';
+  }
+
+  getPasswordErrorMessage() {
+    return this.password.hasError('required') ? 'You must enter a value' : '';
+  }
+
   user: User = {
-    username: 'Sam',
-    password: 'Sam@gmail.com'
+    name: '',
+    email: '',
+    username: 'hemu',
+    password: 'hemu',
+    mobile: 0,
+    gender: '',
+    question: '',
+    answer: '',
+    dob: new Date()
   };
 
   constructor(private loginService: LoginService, private location: Location) {
