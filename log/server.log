@@ -85,3 +85,26 @@
 [2018-06-08T12:40:07.777] [INFO] db.js - Mongoose default connection disconnected through app termination
 [2018-06-08T12:40:52.345] [INFO] server.js - Server is running at port: 3000
 [2018-06-08T12:40:53.431] [INFO] db.js - Connected
+[2018-06-08T15:12:24.342] [INFO] db.js - Mongoose default connection disconnected through app termination
+[2018-06-08T15:23:11.926] [INFO] server.js - Server is running at port: 3000
+[2018-06-08T15:23:13.173] [INFO] db.js - Connected
+[2018-06-08T15:28:35.778] [INFO] server.js - Server is running at port: 3000
+[2018-06-08T15:28:36.999] [INFO] db.js - Connected
+[2018-06-08T16:29:54.598] [INFO] db.js - Mongoose default connection disconnected through app termination
+[2018-06-08T16:30:05.250] [INFO] server.js - Server is running at port: 3000
+[2018-06-08T16:30:06.295] [INFO] db.js - Connected
+[2018-06-08T16:39:30.034] [INFO] server.js - Server is running at port: 3000
+[2018-06-08T16:39:31.213] [INFO] db.js - Connected
+[2018-06-08T16:54:27.204] [INFO] email.js - sendMail: Mail send successfully
+[2018-06-08T17:23:37.985] [INFO] server.js - Server is running at port: 3000
+[2018-06-08T17:23:39.267] [INFO] db.js - Connected
+[2018-06-08T18:58:30.434] [INFO] db.js - Mongoose default connection disconnected through app termination
+[2018-06-08T18:58:48.721] [INFO] server.js - Server is running at port: 3000
+[2018-06-08T18:58:49.910] [INFO] db.js - Connected
+[2018-06-08T19:03:34.512] [INFO] email.js - sendMail: Mail send successfully
+[2018-06-08T19:05:22.977] [ERROR] user.js - userActivate: error while updating user status: CastError: Cast to ObjectId failed for value "" at path "_id" for model "userCollection"
+[2018-06-08T19:05:35.235] [ERROR] user.js - userActivate: error while updating user status: CastError: Cast to ObjectId failed for value "" at path "_id" for model "userCollection"
+[2018-06-08T19:13:37.915] [INFO] db.js - Mongoose default connection disconnected through app termination
+[2018-06-08T19:13:53.370] [INFO] server.js - Server is running at port: 3000
+[2018-06-08T19:13:54.510] [INFO] db.js - Connected
+[2018-06-08T19:19:26.309] [INFO] email.js - sendMail: Mail send successfully

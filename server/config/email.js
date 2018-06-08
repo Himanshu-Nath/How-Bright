@@ -26,7 +26,7 @@ module.exports = {
                 res.send({ status: false, message: consts.FAIL, error });
             } else {
                 logger.info("sendMail: Mail send successfully");
-                res.send({ status: true, message: consts.SUCCESS, developerMessage: info });
+                res.send({ status: true, message: consts.SUCCESS, devMsg: info });
             }
         });
     }

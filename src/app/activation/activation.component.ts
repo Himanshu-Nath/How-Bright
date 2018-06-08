@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ActivationService } from './activation.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-activation',
@@ -22,11 +23,11 @@ export class ActivationComponent implements OnInit {
 
   getActivationStatus() : any {
     this.activationService.getActivationStatus(this.key)
-    .subscribe(result => {
-      console.log(result);
-      if(result.status) {
-        this.status = result.activationStatus;
-        this.name = result.name;
+    .subscribe(response => {
+      console.log(response);
+      if(response.status) {
+        this.status = response.activationStatus;
+        this.name = response.name;
       } else {
         this.status = true;
       }
@@ -35,8 +36,18 @@ export class ActivationComponent implements OnInit {
 
   onActivate(): void {
     this.activationService.activate(this.key)
-    .subscribe(result => {
-      console.log(result);
+    .subscribe(response => {
+      console.log(response);
+      if(response.status) {
+        swal({
+          position: 'top-end',
+          type: 'success',
+          title: 'Account Activated',
+          text: 'Login to How-Brigth',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }      
       this.router.navigate(['/login']);
     });
   }

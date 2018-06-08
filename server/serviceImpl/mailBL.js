@@ -7,7 +7,7 @@ module.exports = {
         let transporter = email.createTransport();
         logger.debug("sendMail: transporter created successfully");
         let mailOptions = {
-            from: emailObject.name +'" 👻" <' + emailObject.from + '>',
+            from: emailObject.from_name +'" 👻" <' + emailObject.from + '>',
             to: emailObject.to,
             subject: emailObject.subject,
             html: emailObject.body,

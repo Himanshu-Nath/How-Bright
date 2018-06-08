@@ -18,9 +18,9 @@ export class RegistrationService {
 
   constructor( private http: HttpClient ) { }
 
-  register (user: User): Observable<User> {
+  register (user: User): Observable<any> {
     console.log(user);
-    return this.http.post<User>('/api/register', user, httpOptions).pipe(
+    return this.http.post<any>('/api/register', user, httpOptions).pipe(
       catchError(this.handleError<any>('register'))
     );
   }

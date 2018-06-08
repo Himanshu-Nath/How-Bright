@@ -53,6 +53,8 @@ import { AppRoutingModule } from './/app-routing.module';
 
 import { LoginService } from './login/login.service';
 import { ActivationComponent } from './activation/activation.component';
+import { ForgotPasswordComponent } from './forgot/forgot-password/forgot-password.component';
+import { CreatePasswordComponent } from './forgot/create-password/create-password.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { ActivationComponent } from './activation/activation.component';
     LoginComponent,
     RegistrationComponent,
     DescriptionComponent,
-    ActivationComponent
+    ActivationComponent,
+    ForgotPasswordComponent,
+    CreatePasswordComponent
   ],
   imports: [
     BrowserModule,

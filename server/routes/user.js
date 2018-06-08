@@ -8,10 +8,23 @@ var mailBL = require('../serviceImpl/mailBL');
 
 var logger = log4js.getLogger('user.js');
 
+var userProjection = {
+    name: 1,
+    email: 1,
+    username: 1,
+    gender: 1,
+    dob: 1,
+    mobile: 1,
+    role: 1,
+    status: 1,
+    image: 1,
+    question: 1
+};
+
 module.exports = {
     //User Registration
     userRegister: function (req, res) {
-        let tempKey = randomize('A0', 8);
+        let tempKey = randomize('A0a!', 12);
         var user = new User({
             name: req.body.name,
             email: req.body.email,
@@ -33,12 +46,13 @@ module.exports = {
                 var emailObject = {
                     name: req.body.name,
                     from: consts.EMAIL.user,
+                    from_name: consts.EMAIL.from,
                     to: req.body.email,
                     subject: "How-Bright account Activation ✔",
                     body: 'Hello &nbsp;' + req.body.name + ',<br><br><p></p><p>We are excited to add you as a new member in our community. Your account has been created in the <b>How-Bright</b> portal. To activate your account please click on the link below</p><p><i><b>Activation Link:</b></i> http://localhost:4200/activate/'+ tempKey +' and click on activation button.</p><p>This message was generated automatically.</p><p>If you need help or have questions, email hnath723@gmail.com anytime.</p> <br> <p>Sincerely, <br>Himanshu Nath <br>How Bright Team</p>'
                 }
                 mailBL.sendMail(emailObject, res);
-                res.send({ status: true, message: consts.SUCCESS, result });
+                // res.send({ status: true, message: consts.SUCCESS, result });
             }
         })
     },
@@ -122,5 +136,74 @@ module.exports = {
                 res.send({ status: true, message: consts.SUCCESS, count: result });             
             }
         });        
-    }
+    },
+
+    //Get user info by email
+    getUserInfoByEmail: function(req, res) {
+        User.findOne( {email: req.params.email, status: true}, userProjection, function(err, result){
+            if(err) {
+                logger.error('getUserInfoByEmail: error while getting user info by email: ' + err);
+                res.send({ status: false, message: consts.FAIL, devMsg: "error while getting user info by email", err });
+            } else {
+                res.send({ status: true, message: consts.SUCCESS, result: result });             
+            }
+        });        
+    },
+
+    //Send mail for forgot password
+    sendForgotPasswordMail: function(req, res) {
+        User.findOneAndUpdate( {email: req.body.email, 'question.q1': req.body.question, 'question.a1': req.body.answer}, {$set: {status: false}},function(err, result){
+            if(err) {
+                logger.error('sendForgotPasswordMail: error while getting user info: ' + err);
+                res.send({ status: false, message: consts.FAIL, devMsg: "error while getting user info", err });
+            } else {
+                if(result != null) {
+                    let tempKey = result.tempKey == null ? randomize('A0a!', 12) : result.tempKey;
+                    var emailObject = {
+                        name: req.body.name,
+                        from: consts.EMAIL.user,
+                        from_name: consts.EMAIL.from,
+                        to: req.body.email,
+                        subject: "How-Bright Change Password ✔",
+                        body: 'Hello &nbsp;' + result.name + ',<br><br><p></p><p>Looks like you had like to change your <b>How-Bright</b> password. Please click the following link to do so:</p><p><i><b>Link:</b></i> http://localhost:4200/createpassword/'+ tempKey +' and click on submit button.</p><p>This message was generated automatically. Please disregard this e-mail if you did not request a password reset. Cheers,</p><p>If you need help or have questions, email hnath723@gmail.com anytime.</p> <br> <p>Sincerely, <br>Himanshu Nath <br>How Bright Team</p>'
+                    }
+                    mailBL.sendMail(emailObject, res);
+                } else {
+                    res.send({ status: false, message: consts.FAIL, devMsg: "user credential not matched" });             
+                }                
+            }
+        });        
+    },
+
+    //Create new password
+    createNewPassword: function(req, res) {
+        User.findOneAndUpdate({_id: req.body.id, email: req.body.email, status: false}, { $set: { status: true, password: req.body.password } }, function(err, result){
+            if(err) {
+                logger.error('userActivate: error while updating user status: ' + err);
+                res.send({ status: false, message: consts.FAIL, devMsg: "error while updating user status", err });
+            } else {
+                if(result != null) {
+                    res.send({ status: true, message: consts.SUCCESS, result });
+                } else {
+                    res.send({ status: false, message: consts.FAIL, devMsg: "user activation failed" });
+                }                
+            }
+        });
+    },
+
+    //Check create new password status
+    checkCreatePasswordStatus: function(req, res) {
+        User.findOne({tempKey: req.params.key}, function(err, result){
+            if(err) {
+                logger.error('checkCreatePasswordStatus: error while getting create new password status: ' + err);
+                res.send({ status: false, message: consts.FAIL, devMsg: "error while getting status", err });
+            } else {
+                if(result != null) {
+                    res.send({ status: true, message: consts.SUCCESS, activationStatus: result.status, name: result.name, id: result._id, email: result.email });
+                } else {
+                    res.send({ status: false, message: consts.FAIL, devMsg: "user not found" });
+                }                
+            }
+        });        
+    },
 }

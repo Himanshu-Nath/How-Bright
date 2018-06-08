@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 import { RegistrationService } from './registration.service';
 import { User } from '../objects/user'
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registration',
@@ -79,8 +80,18 @@ export class RegistrationComponent implements OnInit {
   onRegister(): void {
     console.log(this.user);
     this.registrationService.register(this.user)
-    .subscribe(user => {
-      console.log(user);
+    .subscribe(response => {
+      console.log(response);
+      if(response.status && response.info != null) {
+        swal({
+          position: 'top-end',
+          type: 'success',
+          title: 'Account succesfully created',
+          text: 'Login to your register email to activate your account',
+          showConfirmButton: false,
+          timer: 3000
+        })
+      }
     });
   }
 

@@ -46,8 +46,7 @@
             <mat-label>Email</mat-label>
           <input matInput placeholder="Enter your email" [formControl]="email" 
           [(ngModel)]="user.email" (keyup.enter)="availabilityCheck(user.email, 'email')"
-          (blur)="availabilityCheck(user.email,'email')" required>
-          
+          (blur)="availabilityCheck(user.email,'email')" required>          
           <mat-error *ngIf="!email.valid">User already exists with this email</mat-error>
           <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
         </mat-form-field>

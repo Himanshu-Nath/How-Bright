@@ -16,6 +16,7 @@ module.exports = {
     MONGODB_LOCALHOST_URL: "mongodb://localhost/HB",
 
     EMAIL : {
+        from: 'Sam',
         to: 'hnath723@gmail.com',
         user: 'sampotter723@gmail.com',
         refreshToken: "1/JPN3HjHtfJG3hCTl8zcJnR0D9q82tFRzS48spuBivvNLrJBlQDFe4BoO_2km_u-1",

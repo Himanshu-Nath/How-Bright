@@ -29,6 +29,10 @@ app.post('/api/register', User.userRegister);
 app.get('/api/useractivate/:key', User.userActivate);
 app.get('/api/availabilitycheck/:data', User.checkUser);
 app.get('/api/userstatus/:key', User.userActivateStatus);
+app.get('/api/userbyemail/:email', User.getUserInfoByEmail);
+app.post('/api/forgotpassword/sendmail', User.sendForgotPasswordMail);
+app.put('/api/createPassword', User.createNewPassword);
+app.get('/api/createpassword/status/:key', User.checkCreatePasswordStatus);
 
 app.use('/', express.static(__dirname + '/'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
