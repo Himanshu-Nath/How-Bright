@@ -21,7 +21,13 @@ export class RegistrationService {
   register (user: User): Observable<User> {
     console.log(user);
     return this.http.post<User>('/api/register', user, httpOptions).pipe(
-      catchError(this.handleError<User>('register'))
+      catchError(this.handleError<any>('register'))
+    );
+  }
+
+  availabilityCheck (data: string): Observable<any> {
+    return this.http.get<any>('/api/availabilitycheck/'+data).pipe(
+      catchError(this.handleError<any>('activate'))
     );
   }
 

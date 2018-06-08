@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+import { AngularWebStorageModule } from 'angular-web-storage';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { MatAutocompleteModule,
   MatBadgeModule,
   MatBottomSheetModule,
@@ -102,7 +106,15 @@ import { ActivationComponent } from './activation/activation.component';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule
+    MatTreeModule,
+    SweetAlert2Module.forRoot({
+      buttonsStyling: false,
+      customClass: 'modal-content',
+      confirmButtonClass: 'btn btn-primary',
+      cancelButtonClass: 'btn' }),
+    AngularWebStorageModule,
+    LoadingBarHttpClientModule,
+    LoadingBarRouterModule
   ],
   providers: [
     LoginService

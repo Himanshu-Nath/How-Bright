@@ -53,3 +53,35 @@
 [2018-06-07T19:12:54.382] [INFO] db.js - Connected
 [2018-06-07T19:13:09.080] [INFO] server.js - Server is running at port: 3000
 [2018-06-07T19:13:10.223] [INFO] db.js - Connected
+[2018-06-07T19:18:00.169] [INFO] email.js - sendMail: Mail send successfully
+[2018-06-07T19:18:41.587] [ERROR] user.js - userLogin: user not found
+[2018-06-07T19:23:51.708] [INFO] db.js - Mongoose default connection disconnected through app termination
+[2018-06-07T19:24:05.678] [INFO] server.js - Server is running at port: 3000
+[2018-06-07T19:24:06.869] [INFO] db.js - Connected
+[2018-06-07T19:26:06.043] [INFO] server.js - Server is running at port: 3000
+[2018-06-07T19:26:07.214] [INFO] db.js - Connected
+[2018-06-07T19:27:12.425] [INFO] email.js - sendMail: Mail send successfully
+[2018-06-07T19:39:39.752] [INFO] db.js - Mongoose default connection disconnected through app termination
+[2018-06-07T19:39:54.684] [INFO] server.js - Server is running at port: 3000
+[2018-06-07T19:39:55.811] [INFO] db.js - Connected
+[2018-06-07T19:43:31.602] [INFO] server.js - Server is running at port: 3000
+[2018-06-07T19:43:32.675] [INFO] db.js - Connected
+[2018-06-07T19:43:38.837] [INFO] db.js - Mongoose default connection disconnected through app termination
+[2018-06-07T19:43:53.003] [INFO] server.js - Server is running at port: 3000
+[2018-06-07T19:43:54.348] [INFO] db.js - Connected
+[2018-06-07T19:49:25.528] [INFO] db.js - Mongoose default connection disconnected through app termination
+[2018-06-07T19:49:39.474] [INFO] server.js - Server is running at port: 3000
+[2018-06-07T19:49:40.630] [INFO] db.js - Connected
+[2018-06-07T19:50:52.981] [INFO] email.js - sendMail: Mail send successfully
+[2018-06-07T19:52:31.263] [ERROR] user.js - userRegister: error while registration due to: MongoError: E11000 duplicate key error collection: HB.users index: email_1 dup key: { : "hnath723@gmail.com" }
+[2018-06-08T10:16:30.549] [INFO] server.js - Server is running at port: 3000
+[2018-06-08T10:16:31.907] [INFO] db.js - Connected
+[2018-06-08T11:23:58.369] [INFO] db.js - Mongoose default connection disconnected through app termination
+[2018-06-08T11:24:47.527] [INFO] server.js - Server is running at port: 3000
+[2018-06-08T11:24:49.327] [INFO] db.js - Connected
+[2018-06-08T12:33:38.582] [INFO] db.js - Mongoose default connection disconnected through app termination
+[2018-06-08T12:34:28.433] [INFO] server.js - Server is running at port: 3000
+[2018-06-08T12:34:29.521] [INFO] db.js - Connected
+[2018-06-08T12:40:07.777] [INFO] db.js - Mongoose default connection disconnected through app termination
+[2018-06-08T12:40:52.345] [INFO] server.js - Server is running at port: 3000
+[2018-06-08T12:40:53.431] [INFO] db.js - Connected

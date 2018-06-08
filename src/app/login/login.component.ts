@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { LocalStorageService, LocalStorage } from 'angular-web-storage';
+import { Location } from '@angular/common';
+import swal from 'sweetalert2'
 import { User } from '../objects/user'
 import { LoginService } from './login.service';
-import { Location } from '@angular/common';
+import { UtilsService } from '../service/utils.service';
 
 @Component({
   selector: 'app-login',
@@ -38,7 +41,10 @@ export class LoginComponent implements OnInit {
     dob: new Date()
   };
 
-  constructor(private loginService: LoginService, private location: Location) {
+  constructor(private loginService: LoginService, 
+    private location: Location, 
+    private localStorage: LocalStorageService,
+    private utils: UtilsService) {
     // this.user.username = "himans";
   }
 
@@ -52,8 +58,24 @@ export class LoginComponent implements OnInit {
   onLogin(): void {
     console.log(this.user);
     this.loginService.login(this.user)
-    .subscribe(user => {
-      console.log(user);
+    .subscribe(response => {
+      console.log(response);
+      // swal('Any fool can use a computer')
+      if(response.status) {
+        this.utils.toast({
+          type: 'success',
+          title: 'Signed in successfully'
+        })
+        this.localStorage.set("token", response.result.token, 1000, 'm');
+      } else {
+        this.utils.toast({
+          type: 'error',
+          title: 'Signed in failed'
+        })
+      }
+      console.log(this.localStorage.get("token"));
+      this.localStorage.remove("token");
+      this.localStorage.clear();
     });
   }
 

@@ -1,3 +1,4 @@
+<ngx-loading-bar></ngx-loading-bar>
 <div class="container light-font">
   <h1 class="center super-heading color">Welcome to How Bright </h1>
   <h2 class="regular-heading color center">Registration Form</h2>
@@ -34,7 +35,8 @@
       <div class="input-field">
         <mat-form-field appearance="outline">
             <mat-label>Name</mat-label>
-          <input matInput placeholder="Enter your full name" [formControl]="name" [(ngModel)]="user.name" md-maxlength="30" required>
+          <input matInput placeholder="Enter your full name" [formControl]="name" 
+            [(ngModel)]="user.name" md-maxlength="30" required>
           <mat-error *ngIf="name.invalid">{{getFullnameErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
@@ -42,15 +44,24 @@
       <div class="input-field">
         <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
-          <input matInput placeholder="Enter your email" [formControl]="email" [(ngModel)]="user.email" required>
+          <input matInput placeholder="Enter your email" [formControl]="email" 
+          [(ngModel)]="user.email" (keyup.enter)="availabilityCheck(user.email, 'email')"
+          (blur)="availabilityCheck(user.email,'email')" required>
+          
+          <mat-error *ngIf="!email.valid">User already exists with this email</mat-error>
           <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
         </mat-form-field>
+        <!-- <div *ngIf="emailAvailable">User already exists with this email</div>
+        <div [hidden]="!emailAvailable">User already exists with this email</div> -->
       </div>
 
       <div class="input-field">
         <mat-form-field appearance="outline">
             <mat-label>Username</mat-label>
-          <input matInput placeholder="Enter your username" [formControl]="username" [(ngModel)]="user.username" required>
+          <input matInput placeholder="Enter your username" [formControl]="username" 
+          [(ngModel)]="user.username" (keyup.enter)="availabilityCheck(user.username, 'username')"
+          (blur)="availabilityCheck(user.username,'username')" required>
+          <mat-error *ngIf="!username.valid">User already exists with this username</mat-error>
           <mat-error *ngIf="username.invalid">{{getUsernameErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>

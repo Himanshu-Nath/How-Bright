@@ -24,8 +24,12 @@ export class ActivationComponent implements OnInit {
     this.activationService.getActivationStatus(this.key)
     .subscribe(result => {
       console.log(result);
-      this.status = result.activationStatus;
-      this.name = "Sam";
+      if(result.status) {
+        this.status = result.activationStatus;
+        this.name = result.name;
+      } else {
+        this.status = true;
+      }
     });
   }
 

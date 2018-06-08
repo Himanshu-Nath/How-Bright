@@ -13,6 +13,7 @@ export class RegistrationComponent implements OnInit {
 
   startDate = new Date(1990, 0, 1);
   hide = true;
+
   questions = [
     'What is birth place?',
     'What is your best friend name?',
@@ -80,6 +81,23 @@ export class RegistrationComponent implements OnInit {
     this.registrationService.register(this.user)
     .subscribe(user => {
       console.log(user);
+    });
+  }
+
+  availabilityCheck(data, type): any {
+    this.registrationService.availabilityCheck(data)
+    .subscribe(result => {
+      console.log(result);
+      if(result.status && result.count > 0) {
+        if(type == 'email') {
+          this.email.setErrors({'incorrect': true});
+        } else {
+          this.username.setErrors({'incorrect': true});
+        }        
+      } else {
+        this.email.setErrors(null);
+        this.username.setErrors(null);
+      }
     });
   }
 

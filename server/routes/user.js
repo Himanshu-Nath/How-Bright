@@ -64,7 +64,6 @@ module.exports = {
             } else {
                 if(result != null) {
                     result.token = token;
-                    console.log(result);
                     User.findByIdAndUpdate(result._id, { $set: { token: token, lastLogin: new Date() } }, { new: true }, function (err, model) {
                         if (err) {
                             logger.error('userLogin: error while updating token: ' + err);
@@ -83,26 +82,44 @@ module.exports = {
 
     //Activate User
     userActivate: function(req, res) {
-        User.findOneAndUpdate({tempKey: req.params.key, status: false}, { $set: { status: true, tempKey: null } }, function(err, result){
+        User.findOneAndUpdate({tempKey: req.params.key, status: false}, { $set: { status: true } }, function(err, result){
             if(err) {
                 logger.error('userActivate: error while updating user status: ' + err);
                 res.send({ status: false, message: consts.FAIL, devMsg: "error while updating user status", err });
             } else {
-                console.log(result)
-                res.send({ status: true, message: consts.SUCCESS, result });
+                if(result != null) {
+                    res.send({ status: true, message: consts.SUCCESS, result });
+                } else {
+                    res.send({ status: false, message: consts.FAIL, devMsg: "user activation failed" });
+                }                
             }
         });
     },
 
     //User Active Status
     userActivateStatus: function(req, res) {
-        User.findOne({tempKey: req.params.key, status: false}, function(err, result){
+        User.findOne({tempKey: req.params.key}, function(err, result){
             if(err) {
                 logger.error('userActivateStatus: error while getting status: ' + err);
                 res.send({ status: false, message: consts.FAIL, devMsg: "error while getting status", err });
             } else {
-                console.log(result)
-                res.send({ status: true, message: consts.SUCCESS, activationStatus: false });
+                if(result != null) {
+                    res.send({ status: true, message: consts.SUCCESS, activationStatus: result.status, name: result.name });
+                } else {
+                    res.send({ status: false, message: consts.FAIL, devMsg: "user not found" });
+                }                
+            }
+        });        
+    },
+
+    //Check user exist or not
+    checkUser: function(req, res) {
+        User.count( {$or: [{username: req.params.data},{email: req.params.data}]}, function(err, result){
+            if(err) {
+                logger.error('checkUser: error while getting user: ' + err);
+                res.send({ status: false, message: consts.FAIL, devMsg: "error while getting user", err });
+            } else {
+                res.send({ status: true, message: consts.SUCCESS, count: result });             
             }
         });        
     }

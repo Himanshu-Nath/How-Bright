@@ -27,6 +27,7 @@ var User = require('./server/routes/user')
 app.post('/api/login', User.userLogin);
 app.post('/api/register', User.userRegister);
 app.get('/api/useractivate/:key', User.userActivate);
+app.get('/api/availabilitycheck/:data', User.checkUser);
 app.get('/api/userstatus/:key', User.userActivateStatus);
 
 app.use('/', express.static(__dirname + '/'));
