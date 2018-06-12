@@ -7,6 +7,8 @@ import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 import { AngularWebStorageModule } from 'angular-web-storage';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ngfModule, ngf } from "angular-file";
 import { MatAutocompleteModule,
   MatBadgeModule,
   MatBottomSheetModule,
@@ -118,7 +120,9 @@ import { CreatePasswordComponent } from './forgot/create-password/create-passwor
       cancelButtonClass: 'btn' }),
     AngularWebStorageModule,
     LoadingBarHttpClientModule,
-    LoadingBarRouterModule
+    LoadingBarRouterModule,
+    NgxSpinnerModule,
+    ngfModule
   ],
   providers: [
     LoginService

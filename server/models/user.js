@@ -10,7 +10,7 @@ var UserSchema = new Schema({
     mobile: Number,
     role: { type : String, default: "USER"},
     status: { type : Boolean, default: false },
-    image: String,
+    image: {id: String, filename: String, bucket: String},
     lastLogin: Date,
     exams:[],
     token: String,

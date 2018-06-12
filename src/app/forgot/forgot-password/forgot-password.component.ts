@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 import { ForgotPasswordService } from './forgot-password.service';
 import swal from 'sweetalert2';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-forgot-password',
@@ -29,16 +30,16 @@ export class ForgotPasswordComponent implements OnInit {
     return this.answer.hasError('required') ? 'You must enter a value' : '';
   }
 
-  constructor(private forgotPasswordService: ForgotPasswordService) { }
+  constructor(private forgotPasswordService: ForgotPasswordService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    
   }
 
   checkEmail(email): any {
     if(email.length > 0) {
       this.forgotPasswordService.checkEmail(email)
       .subscribe(response => {
-        console.log(response);
         if(response.status && response.result != null) {
           this.user.question = response.result.question.q1;
           this.email.setErrors(null);
@@ -50,8 +51,10 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   onForgot(): any {
+    this.spinner.show();
     this.forgotPasswordService.forgotPassword(this.user)
     .subscribe(response => {
+      this.spinner.hide();
       console.log(response);
       if(response.status && response.devMsg != null) {
         swal({

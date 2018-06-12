@@ -8,7 +8,7 @@ export class UtilsService {
 
   constructor() { }
 
-  toast = swal.mixin({
+  toast = (swal as any).mixin({
     toast: true,
     position: 'top-end',
     showConfirmButton: false,

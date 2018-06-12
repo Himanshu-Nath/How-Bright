@@ -1,5 +1,7 @@
 const uuidv1 = require('uuid/v1');
-var randomize = require('randomatic');
+const randomize = require('randomatic');
+const multer = require('multer');
+const GridFsStorage = require('multer-gridfs-storage');
 require("../models/user");
 var User = mongoose.model('userCollection');
 var consts = require('../config/constant');
@@ -7,6 +9,18 @@ var usersBL = require('../serviceImpl/userBL');
 var mailBL = require('../serviceImpl/mailBL');
 
 var logger = log4js.getLogger('user.js');
+var storage = GridFsStorage({
+    url: consts.MONGODB_LOCALHOST_URL,
+    file: (req, file) => {
+        var datetimestamp = Date.now();
+        return {
+            bucketName: 'HBFiles',            
+            filename: file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1],
+            metadata: file
+        };
+      }
+});
+var upload = multer({  storage: storage }).single('file');
 
 var userProjection = {
     name: 1,
@@ -24,37 +38,48 @@ var userProjection = {
 module.exports = {
     //User Registration
     userRegister: function (req, res) {
-        let tempKey = randomize('A0a!', 12);
-        var user = new User({
-            name: req.body.name,
-            email: req.body.email,
-            username: req.body.username,
-            password: req.body.password,
-            gender: req.body.gender,
-            dob: req.body.dob,
-            mobile: req.body.mobile,
-            role: req.body.role,
-            tempKey: tempKey,
-            token: '',
-            question: {q1: req.body.question, a1: req.body.answer}
-        });
-        user.save(function (err, result) {
-            if (err) {
-                logger.error('userRegister: error while registration due to: ' + err);
-                res.send({ status: false, message: consts.FAIL, devMsg: "Registration failed", err });
+        upload(req, res,function(err){            
+            console.log(req.body);
+            console.log(req.file);
+            if(err){
+                console.log(err);
+                logger.error('userRegister: error while storing file in DB due to: ' + err);
+                res.send({ status: false, message: consts.FAIL, devMsg: "Storing file to DB failed", err });
             } else {
-                var emailObject = {
+                let tempKey = randomize('A0a', 12);
+                var user = new User({
                     name: req.body.name,
-                    from: consts.EMAIL.user,
-                    from_name: consts.EMAIL.from,
-                    to: req.body.email,
-                    subject: "How-Bright account Activation ✔",
-                    body: 'Hello &nbsp;' + req.body.name + ',<br><br><p></p><p>We are excited to add you as a new member in our community. Your account has been created in the <b>How-Bright</b> portal. To activate your account please click on the link below</p><p><i><b>Activation Link:</b></i> http://localhost:4200/activate/'+ tempKey +' and click on activation button.</p><p>This message was generated automatically.</p><p>If you need help or have questions, email hnath723@gmail.com anytime.</p> <br> <p>Sincerely, <br>Himanshu Nath <br>How Bright Team</p>'
-                }
-                mailBL.sendMail(emailObject, res);
-                // res.send({ status: true, message: consts.SUCCESS, result });
+                    email: req.body.email,
+                    username: req.body.username,
+                    password: req.body.password,
+                    gender: req.body.gender,
+                    dob: req.body.dob,
+                    mobile: req.body.mobile,
+                    role: req.body.role,
+                    tempKey: tempKey,
+                    token: '',
+                    question: {q1: req.body.question, a1: req.body.answer},
+                    image: {id: req.file.id, filename: req.file.filename, bucket: req.file.bucketName}
+                });
+                user.save(function (err, result) {
+                    if (err) {
+                        logger.error('userRegister: error while registration due to: ' + err);
+                        res.send({ status: false, message: consts.FAIL, devMsg: "Registration failed", err });
+                    } else {
+                        var emailObject = {
+                            name: req.body.name,
+                            from: consts.EMAIL.user,
+                            from_name: consts.EMAIL.from,
+                            to: req.body.email,
+                            subject: "How-Bright account Activation ✔",
+                            body: 'Hello &nbsp;' + req.body.name + ',<br><br><p></p><p>We are excited to add you as a new member in our community. Your account has been created in the <b>How-Bright</b> portal. To activate your account please click on the link below</p><p><i><b>Activation Link:</b></i> http://localhost:4200/activate/'+ tempKey +' and click on activation button.</p><p>This message was generated automatically.</p><p>If you need help or have questions, email hnath723@gmail.com anytime.</p> <br> <p>Sincerely, <br>Himanshu Nath <br>How Bright Team</p>'
+                        }
+                        mailBL.sendMail(emailObject, res);
+                        // res.send({ status: true, message: consts.SUCCESS, result });
+                    }
+                })
             }
-        })
+        });
     },
 
     //User Login

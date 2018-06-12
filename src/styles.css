@@ -80,4 +80,23 @@ p.description {
 .input-field > * {
     width: 100%;
 }
-  
+
+.drop-box{
+    border: double;
+    padding: 2%;
+    display: block;
+}
+
+.previewIcon {
+    width:100px;height:100px;
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+
+.word-break {
+    word-break: break-word;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}

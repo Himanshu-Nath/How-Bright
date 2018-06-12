@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { LocalStorageService, LocalStorage } from 'angular-web-storage';
 import { Location } from '@angular/common';
 import swal from 'sweetalert2'
+import { NgxSpinnerService } from 'ngx-spinner';
 import { User } from '../objects/user'
 import { LoginService } from './login.service';
 import { UtilsService } from '../service/utils.service';
@@ -44,7 +45,8 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, 
     private location: Location, 
     private localStorage: LocalStorageService,
-    private utils: UtilsService) {
+    private utils: UtilsService,
+    private spinner: NgxSpinnerService) {
     // this.user.username = "himans";
   }
 
@@ -56,9 +58,11 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(): void {
+    this.spinner.show();
     console.log(this.user);
     this.loginService.login(this.user)
     .subscribe(response => {
+      this.spinner.hide();
       console.log(response);
       // swal('Any fool can use a computer')
       if(response.status) {

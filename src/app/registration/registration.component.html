@@ -105,6 +105,38 @@
           </mat-form-field>
         </div>
 
+        <div class="row">
+      <div class="col-6 center">
+          <div
+            ngfDrop
+            selectable       = "1"
+            [(validDrag)]    = "validComboDrag"
+            [(files)]        = "files"
+            accept           = "image/*"
+            [maxSize]        = "maxSize"
+            [(lastInvalids)] = "lastInvalids"
+            [(dragFiles)]    = "dragFiles"
+            class            = "drop-box card card-block bg-light">
+            Drop/select profile <strong>image</strong> here
+          </div>
+      </div>
+      <div class="col-6 center" *ngFor="let item of files;let i=index">
+          <div class="row">
+              <div class="col-3">
+                  <div *ngIf="['image/gif','image/png','image/jpeg'].indexOf(item.type)>=0">
+                    <div class="previewIcon" [ngfBackground]="item"></div>
+                  </div>                  
+              </div>
+              <div class="col-5 word-break"><strong>{{ item.name }}</strong><br>(<em>{{ item.type }}</em>)</div>
+              <div class="col-2">{{ item.size/1024/1024 | number:'.2' }} MB</div>
+              <div class="col-2 cursor-pointer">
+              <mat-icon matSuffix (click)="files.splice(i,1)">delete_forever</mat-icon>
+              </div>
+            </div>
+      </div>
+    </div>
+      <br>
+
       <div class="row">
         <div class="col-2">
           <label for="gender">
@@ -119,6 +151,7 @@
           </mat-radio-group>
         </div>
       </div>
+      <br>
 
       <div class="row">
         <div class="col-2">
@@ -134,7 +167,7 @@
           </mat-form-field>
         </div>
       </div>
-      <button type="button" class="btn btn-outline-success btn-block" (click)="onRegister()">Register</button>
+      <button type="button" class="btn btn-outline-success btn-block" (click)="onRegister(files)">Register</button>
     </div>
   </form>
 </div>

@@ -17,8 +17,15 @@ log4js.configure({
 });
 const logger = log4js.getLogger('server.js');
 
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true, parameterLimit: 1000000}));
-app.use(bodyParser.json({limit: '50mb', parameterLimit: 1000000}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
+
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    next();
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ActivationService } from './activation.service';
 import swal from 'sweetalert2';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-activation',
@@ -10,7 +11,9 @@ import swal from 'sweetalert2';
 })
 export class ActivationComponent implements OnInit {
 
-  constructor( private route: ActivatedRoute, private activationService: ActivationService, private router: Router ) { }
+  constructor( private route: ActivatedRoute, private activationService: ActivationService, 
+    private router: Router,
+    private spinner: NgxSpinnerService ) { }
 
   key: string;
   status: Boolean;
@@ -29,14 +32,24 @@ export class ActivationComponent implements OnInit {
         this.status = response.activationStatus;
         this.name = response.name;
       } else {
-        this.status = true;
+        swal({
+          position: 'top-end',
+          type: 'error',
+          title: 'Account not found',
+          text: 'Contact to admin not able to find your account! Sorry',
+          showConfirmButton: false,
+          timer: 4000
+        })
+        this.router.navigate(['/login']);
       }
     });
   }
 
   onActivate(): void {
+    this.spinner.show();
     this.activationService.activate(this.key)
     .subscribe(response => {
+      this.spinner.hide();
       console.log(response);
       if(response.status) {
         swal({
@@ -45,7 +58,7 @@ export class ActivationComponent implements OnInit {
           title: 'Account Activated',
           text: 'Login to How-Brigth',
           showConfirmButton: false,
-          timer: 1500
+          timer: 4000
         })
       }      
       this.router.navigate(['/login']);

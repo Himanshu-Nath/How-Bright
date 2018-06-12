@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 import { CreatePasswordService } from './create-password.service';
 import swal from 'sweetalert2';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-create-password',
@@ -34,7 +35,9 @@ export class CreatePasswordComponent implements OnInit {
     return this.confirmPassword.hasError('required') ? 'You must enter a value' : '';
   }
 
-  constructor(private createPasswordService: CreatePasswordService, private route: ActivatedRoute) { }
+  constructor(private createPasswordService: CreatePasswordService, 
+    private route: ActivatedRoute,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.key = this.route.snapshot.paramMap.get('key');
@@ -65,8 +68,10 @@ export class CreatePasswordComponent implements OnInit {
   }
 
   onCreatePassword(): any {
+    this.spinner.show();
       this.createPasswordService.createPassword(this.user)
       .subscribe(response => {
+        this.spinner.hide();
         console.log(response);
         if(response.status) {
           swal({

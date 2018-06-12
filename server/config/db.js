@@ -1,4 +1,5 @@
 var consts = require('./constant');
+
 const logger = log4js.getLogger('db.js');
 
 mongoose.Promise = global.Promise;
