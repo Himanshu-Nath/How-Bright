@@ -8,7 +8,6 @@ import { Subscription } from 'rxjs';
 import { User } from '../objects/user'
 import swal from 'sweetalert2';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Directive } from '@angular/core/src/metadata/directives';
 
 @Component({
   selector: 'app-registration',
@@ -83,7 +82,8 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private registrationService: RegistrationService,
     private spinner: NgxSpinnerService,
-    private HttpClient:HttpClient) { }
+    private HttpClient:HttpClient,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -101,12 +101,30 @@ export class RegistrationComponent implements OnInit {
       this.form.append("answer", this.user.answer);
       this.form.append("dob", String(this.user.dob));
       this.form.append("file", files[0], files[0].name);
-      const config = new HttpRequest<FormData>('POST', this.registerURL, this.form);
+      const config = new HttpRequest('POST', this.registerURL, this.form);
       return this.HttpClient.request( config )
       .subscribe(response => {
         console.log(response)
+        if(response) {
+          swal({
+            position: 'top-end',
+            type: 'success',
+            title: 'Account succesfully created',
+            text: 'Login to your register email to activate your account',
+            showConfirmButton: false,
+            timer: 4000
+          })
+          this.router.navigate(['/login']);
+        }
       }, error=>{
-        alert('!failure beyond compare cause:' + error.toString())
+        swal({
+          position: 'top-end',
+          type: 'error',
+          title: 'Account creation fail',
+          text: 'Please try again!',
+          showConfirmButton: false,
+          timer: 4000
+        })
       })
     } else {
       swal({
@@ -115,42 +133,10 @@ export class RegistrationComponent implements OnInit {
         title: 'Image not found',
         text: 'Please try again! select one image',
         showConfirmButton: false,
-        timer: 3000
+        timer: 4000
       })
     }
   }
-
-  // onRegister(files): void {
-  //   console.log(files);
-  //   if(files != undefined && files.length > 0) {      
-  //     // this.spinner.show();
-  //     // console.log(this.user);
-  //     // this.registrationService.register(this.user)
-  //     // .subscribe(response => {
-  //     //   this.spinner.hide();
-  //     //   console.log(response);
-  //     //   if(response.status && response.info != null) {
-  //     //     swal({
-  //     //       position: 'top-end',
-  //     //       type: 'success',
-  //     //       title: 'Account succesfully created',
-  //     //       text: 'Login to your register email to activate your account',
-  //     //       showConfirmButton: false,
-  //     //       timer: 3000
-  //     //     })
-  //     //   }
-  //     // });
-  //   } else {
-  //     swal({
-  //       position: 'top-end',
-  //       type: 'warning',
-  //       title: 'Image not found',
-  //       text: 'Please try again! select one image',
-  //       showConfirmButton: false,
-  //       timer: 3000
-  //     })
-  //   }
-  // }
 
   availabilityCheck(data, type): any {
     this.registrationService.availabilityCheck(data)

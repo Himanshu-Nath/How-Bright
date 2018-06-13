@@ -27,8 +27,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
-
 var User = require('./server/routes/user')
 
 app.post('/api/login', User.userLogin);
@@ -44,9 +42,10 @@ app.get('/api/createpassword/status/:key', User.checkCreatePasswordStatus);
 app.use('/', express.static(__dirname + '/'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 app.use('/src', express.static(__dirname + '/src'));
+app.use(express.static(path.join(__dirname, '/dist/how-bright')));
 
 app.use('*', function(req, res){
-    res.send(path.join(__dirname, 'dist/index.html'));
+    res.sendFile(path.join(__dirname, 'dist/how-bright/index.html'));
 })
 
 app.listen(consts.PORT, function() {

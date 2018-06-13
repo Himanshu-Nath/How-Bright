@@ -1,0 +1,85 @@
+<header class="jumbotron my-4">
+  <h1 class="display-3">A Warm Welcome!</h1>
+  <p class="lead">User account list and also modify info like active, inactive, etc.</p>
+  <a routerLink="/registration" class="btn btn-primary btn-lg">Add new user!</a>
+</header>
+<div class="row">
+    <div class="col-lg-4 col-md-6 input-field">  
+        <mat-form-field appearance="outline">
+            <mat-label>Search By Name</mat-label>
+          <input matInput placeholder="Filter by name" [(ngModel)]="searchByName" md-maxlength="30">
+        </mat-form-field>
+    </div>
+    <div class="col-lg-4 col-md-6 input-field"> 
+        <mat-form-field appearance="outline">
+            <mat-label>Sort By</mat-label>
+            <mat-select placeholder="Sort By" [formControl]="sortBy">
+              <mat-option>--</mat-option>
+              <mat-optgroup *ngFor="let group of sortOptions" [label]="group.name">
+              <mat-option *ngFor="let data of group.section" [value]="data.value">
+                {{data.view}}
+              </mat-option>
+            </mat-optgroup>
+            </mat-select>
+          </mat-form-field>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <button type="button" class="btn btn-outline-info btn-block" (click)="onSearch()">Search</button>
+    </div>
+</div>
+<br>
+<div class="row text-center">
+  <div class="col-lg-3 col-md-6 mb-4">
+    <div class="card">
+      <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+      <div class="card-body">
+        <h4 class="card-title">Card title</h4>
+        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+      </div>
+      <div class="card-footer">
+        <a href="#" class="btn btn-primary">Find Out More!</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-6 mb-4">
+    <div class="card">
+      <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+      <div class="card-body">
+        <h4 class="card-title">Card title</h4>
+        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa
+          natus architecto.</p>
+      </div>
+      <div class="card-footer">
+        <a href="#" class="btn btn-primary">Find Out More!</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-6 mb-4">
+    <div class="card">
+      <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+      <div class="card-body">
+        <h4 class="card-title">Card title</h4>
+        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+      </div>
+      <div class="card-footer">
+        <a href="#" class="btn btn-primary">Find Out More!</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-6 mb-4">
+    <div class="card">
+      <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+      <div class="card-body">
+        <h4 class="card-title">Card title</h4>
+        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa
+          natus architecto.</p>
+      </div>
+      <div class="card-footer">
+        <a href="#" class="btn btn-primary">Find Out More!</a>
+      </div>
+    </div>
+  </div>
+</div>

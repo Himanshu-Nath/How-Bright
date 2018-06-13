@@ -57,6 +57,11 @@ import { LoginService } from './login/login.service';
 import { ActivationComponent } from './activation/activation.component';
 import { ForgotPasswordComponent } from './forgot/forgot-password/forgot-password.component';
 import { CreatePasswordComponent } from './forgot/create-password/create-password.component';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
+import { AdminComponent } from './admin/admin.component';
+import { UserComponent } from './user/user.component';
+import { AccountsComponent } from './admin/accounts/accounts.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +73,12 @@ import { CreatePasswordComponent } from './forgot/create-password/create-passwor
     DescriptionComponent,
     ActivationComponent,
     ForgotPasswordComponent,
-    CreatePasswordComponent
+    CreatePasswordComponent,
+    AdminDashboardComponent,
+    UserDashboardComponent,
+    AdminComponent,
+    UserComponent,
+    AccountsComponent
   ],
   imports: [
     BrowserModule,

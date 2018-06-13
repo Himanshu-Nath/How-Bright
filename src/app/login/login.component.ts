@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { LocalStorageService, LocalStorage } from 'angular-web-storage';
 import { Location } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2'
 import { NgxSpinnerService } from 'ngx-spinner';
 import { User } from '../objects/user'
@@ -46,7 +47,8 @@ export class LoginComponent implements OnInit {
     private location: Location, 
     private localStorage: LocalStorageService,
     private utils: UtilsService,
-    private spinner: NgxSpinnerService) {
+    private spinner: NgxSpinnerService,
+    private router: Router) {
     // this.user.username = "himans";
   }
 
@@ -71,6 +73,11 @@ export class LoginComponent implements OnInit {
           title: 'Signed in successfully'
         })
         this.localStorage.set("token", response.result.token, 1000, 'm');
+        if(response.result.role == "USER") {
+          this.router.navigate(['/user']);
+        } else {
+          this.router.navigate(['/admin']);
+        }
       } else {
         this.utils.toast({
           type: 'error',

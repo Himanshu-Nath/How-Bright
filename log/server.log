@@ -271,3 +271,15 @@
 [2018-06-12T16:10:06.465] [INFO] server.js - Server is running at port: 3000
 [2018-06-12T16:10:07.617] [INFO] db.js - Connected
 [2018-06-12T16:13:22.935] [INFO] email.js - sendMail: Mail send successfully
+[2018-06-12T17:40:13.358] [INFO] email.js - sendMail: Mail send successfully
+[2018-06-12T17:41:09.337] [ERROR] user.js - userLogin: user not found
+[2018-06-13T10:33:41.562] [INFO] server.js - Server is running at port: 3000
+[2018-06-13T10:33:42.600] [INFO] db.js - Connected
+[2018-06-13T18:53:20.664] [INFO] server.js - Server is running at port: 3000
+[2018-06-13T18:53:21.943] [INFO] db.js - Connected
+[2018-06-13T18:59:06.340] [INFO] db.js - Mongoose default connection disconnected through app termination
+[2018-06-13T19:06:43.153] [INFO] server.js - Server is running at port: 3000
+[2018-06-13T19:06:44.246] [INFO] db.js - Connected
+[2018-06-13T19:10:11.919] [INFO] db.js - Mongoose default connection disconnected through app termination
+[2018-06-13T19:10:25.593] [INFO] server.js - Server is running at port: 3000
+[2018-06-13T19:10:26.765] [INFO] db.js - Connected

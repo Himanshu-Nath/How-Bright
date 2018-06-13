@@ -1,4 +1,4 @@
-var Schema   = mongoose.Schema;
+var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
     name: { type : String, required : true },
